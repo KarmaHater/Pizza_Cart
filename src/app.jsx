@@ -2,8 +2,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
-import store from '../store.js';
-import HomePage from './home-page';
+import store from './redux/store';
+import HomePage from './pages/home-page';
 
 const routes = <Route>
     <Route path="/" component={HomePage}/>
