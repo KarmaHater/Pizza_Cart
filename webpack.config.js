@@ -1,7 +1,7 @@
 var path = require("path");
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: './src/app.jsx',
+  devtool: "inline-source-map",
+  entry: "./src/app.jsx",
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
@@ -12,19 +12,19 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
+        loader: "babel"
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: "style!css!sass"
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: "style-loader!css-loader"
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        loader: "url-loader?limit=8192"
       },
       {
         test: /\.(woff|woff2)$/,
@@ -45,6 +45,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ["", ".js", ".jsx"]
   }
 };

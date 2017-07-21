@@ -1,17 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { selectPizzaSizes } from "./../../store/selectors";
+import { bindActionCreators } from 'redux';
+import { fetchPizzaSizes } from "./../../redux/actions";
+import { selectPizzaSizes } from "./../../redux/selectors";
 import PizzaSize from "./PizzaSize";
 
-const PizzaSizesContainer = ({ pizzaSizes }) => (
-  <div>
-    <h1>These are the thresholds:</h1>
-    {[1,2,3].map((t, i) => <PizzaSize key={i} item={t} />)}
-  </div>
-);
+class PizzaSizesContainer extends Component {
+  componentWillMount() {
+    this.props.fetchPizzaSizes()
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Pizzas:</h1>
+        {this.props.pizzaSizes.map((item, i) => <PizzaSize key={i} item={item} />)}
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
-  // pizzaSizes: selectPizzaSizes(state)
+  pizzaSizes: selectPizzaSizes(state)
 });
 
-export default connect(mapStateToProps)(PizzaSizesContainer);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPizzaSizes: bindActionCreators(fetchPizzaSizes, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaSizesContainer);

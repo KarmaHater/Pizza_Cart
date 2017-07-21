@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import dummy from './dummy-reducer';
+import pizzaSizes from './pizzaSizes';
 
 export default combineReducers({
-    dummy,
+    pizzaSizes,
 });

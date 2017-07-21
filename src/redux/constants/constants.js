@@ -1,1 +1,1 @@
-export const DUMMY= 'DUMMY';
+export const PIZZA_SIZES_FETCH = "fetch.pizza.size";

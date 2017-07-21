@@ -3,7 +3,9 @@ import React from "react";
 const PizzaSize = ({ item }) => {
   return (
     <div>
-      hi pizza!
+      <div>{item.name}</div>
+      <div>{item.maxToppings}</div>
+      <div>{item.basePrice}</div>
     </div>
   );
 };

@@ -1,1 +1,1 @@
-export const selectCurrentTimerCount = state => true;
+export const selectPizzaSizes = state => state.pizzaSizes;
