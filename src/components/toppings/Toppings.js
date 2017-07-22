@@ -5,23 +5,25 @@ import { addCartItem } from "./../../redux/actions";
 import Topping from "./Topping";
 
 class Toppings extends Component {
-  componentWillMount() {
-    this.selectedCheckboxes = new Set();
+  constructor(props) {
+    super(props);
+    this.state = { checked: new Set() };
   }
 
   toggleCheckbox = name => {
-    if (this.selectedCheckboxes.has(name)) {
-      this.selectedCheckboxes.delete(name);
+    if (this.state.checked.has(name)) {
+      this.setState({ checked: this.state.checked.delete(name) });
     } else {
-      this.selectedCheckboxes.add(name);
+      this.setState({ checked: this.state.checked.add(name) });
     }
   };
 
   handleClick = () => {
     this.props.addCartItem({
       pizzaName: this.props.pizzaName,
-      currentToppings: this.selectedCheckboxes
+      currentToppings: this.state.checked
     });
+    this.setState({ checked: new Set() });
   };
 
   render() {
@@ -35,6 +37,7 @@ class Toppings extends Component {
             <li key={i}>
               <input
                 type="checkbox"
+                checked={this.state.checked.has(topping.name) || false}
                 onClick={() => this.toggleCheckbox(topping.name)}
               />
               <Topping topping={topping} />
