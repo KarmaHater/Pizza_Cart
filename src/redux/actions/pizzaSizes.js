@@ -1,6 +1,6 @@
-import { PIZZA_SIZES_FETCH } from "../constants/constants.js";
-const fetch = require("graphql-fetch")(
-  "https://core-graphql.dev.waldo.photos/pizza"
+import { PIZZA_SIZES_FETCH } from '../constants/constants.js';
+const fetch = require('graphql-fetch')(
+  'https://core-graphql.dev.waldo.photos/pizza'
 );
 
 const query = `{
@@ -12,16 +12,16 @@ const query = `{
 }`;
 
 export const fetchPizzaSizes = () => dispatch => {
-  fetch(query).then(results => {
-    if (results.errors) {
-      console.log(results.errors);
-    }
+    fetch(query).then(results => {
+        if (results.errors) {
+            console.log(results.errors);
+        }
 
-    dispatch({
-      type: PIZZA_SIZES_FETCH,
-      payload: {
-        pizzaSizes: results.data.pizzaSizes
-      }
+        dispatch({
+            type: PIZZA_SIZES_FETCH,
+            payload: {
+                pizzaSizes: results.data.pizzaSizes
+            }
+        });
     });
-  });
 };

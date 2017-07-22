@@ -1,1 +1,1 @@
-export const calculateTotal = (items) => "14.85"
+export const calculateTotal = (items) => '14.85';

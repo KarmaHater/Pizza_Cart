@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const Topping = ({ topping }) => {
-  return (
+    return (
       <span>{topping.name} : {topping.price}</span>
-  );
+    );
 };
 
 export default Topping;

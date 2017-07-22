@@ -1,5 +1,5 @@
-import { PIZZA_TOPPINGS_FETCH } from "../constants/constants.js";
-import { selectToppings } from "./../../redux/selectors";
+import { PIZZA_TOPPINGS_FETCH } from '../constants/constants.js';
+import { selectToppings } from './../../redux/selectors';
 
 //get this data
 // Available toppings per pizza size, and whether they are selected by default for that size.
@@ -17,11 +17,13 @@ import { selectToppings } from "./../../redux/selectors";
 // }`;
 
 const mockedToppings = [
-  { name: "cheese", price: 1.20 },
-  { name: "ham", price: 1.20 },
-  { name: "tomate", price: 1.20 },
-  { name: "olives", price: 1.20 },
-  { name: "onions", price: 1.20 }
+  { name: 'cheese', price: 1.20 },
+  { name: 'ham', price: 1.20 },
+  { name: 'tomate', price: 1.20 },
+  { name: 'olives', price: 1.20 },
+  { name: 'onions', price: 1.20 },
+  { name: 'blue cheese', price: 1.20 },
+  { name: 'goat cheese', price: 1.20 }
 ];
 
 const fetchPizzaToppings = () => dispatch => {
@@ -30,21 +32,21 @@ const fetchPizzaToppings = () => dispatch => {
   //     console.log(results.errors);
   //   }
 
-  dispatch({
-    type: PIZZA_TOPPINGS_FETCH,
-    payload: {
-      toppings: mockedToppings
-    }
-  });
+    dispatch({
+        type: PIZZA_TOPPINGS_FETCH,
+        payload: {
+            toppings: mockedToppings
+        }
+    });
   // });
 };
 
 export const shouldFetchPizzaToppings = () => (dispatch, getState) => {
-  const cachedToppings = selectToppings(getState());
+    const cachedToppings = selectToppings(getState());
 
-  if (cachedToppings.isEmpty()) {
-    dispatch(fetchPizzaToppings());
-  }
+    if (cachedToppings.isEmpty()) {
+        dispatch(fetchPizzaToppings());
+    }
 
-  return;
+    return;
 };

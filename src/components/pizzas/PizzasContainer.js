@@ -26,6 +26,7 @@ class PizzaSizesContainer extends Component {
             <div key={i}>
               <PizzaSize item={item} />
               <Toppings
+                maxToppings={item.maxToppings}
                 toppings={toppings}
                 pizzaName={item.name}
               />
