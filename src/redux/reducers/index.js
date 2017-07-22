@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import pizzaSizes from './pizzaSizes';
+import cartSummary from './cartSummary';
+import pizzas from './pizzas';
 
 export default combineReducers({
-    pizzaSizes,
+    cartSummary,
+    pizzas
 });

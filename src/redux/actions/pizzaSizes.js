@@ -16,7 +16,7 @@ export const fetchPizzaSizes = () => dispatch => {
     if (results.errors) {
       console.log(results.errors);
     }
-    
+
     dispatch({
       type: PIZZA_SIZES_FETCH,
       payload: {

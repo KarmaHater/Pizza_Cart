@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import PizzaSizesContainer from './../components/pizzaSize/PizzaSizesContainer';
+import PizzasContainer from './../components/pizzas/PizzasContainer';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <PizzaSizesContainer />
+        <PizzasContainer />
       </div>
     );
   }
