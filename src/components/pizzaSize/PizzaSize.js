@@ -6,7 +6,6 @@ const PizzaSize = ({ item }) => {
       <h2>Size: {item.name}</h2>
       <div>{item.maxToppings}</div>
       <div>pirce: {item.basePrice}</div>
-      <button>add me!</button>
     </div>
   );
 };

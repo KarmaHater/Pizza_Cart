@@ -8,7 +8,8 @@ const initialState = new Map({
 export default (state = initialState, action) => {
   switch (action.type) {
     case CART_SUMMARY_FETCH:
-      return state.set("items", new List(action.payload.item));
+    debugger
+      return state.get("items");
     default:
       return state;
   }

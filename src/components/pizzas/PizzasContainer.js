@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchPizzaSizes, shouldFetchPizzaToppings } from "./../../redux/actions";
+import {
+  fetchPizzaSizes,
+  shouldFetchPizzaToppings
+} from "./../../redux/actions";
 import { selectPizzaSizes, selectToppings } from "./../../redux/selectors";
 import PizzaSize from "./../pizzaSize/PizzaSize";
 import Toppings from "./../toppings/Toppings";
@@ -20,10 +23,13 @@ class PizzaSizesContainer extends Component {
         <h1>Pizzas:</h1>
         {pizzaSizes.map((item, i) => {
           return (
-            <div>
-              <PizzaSize key={i} item={item} />
-              <Toppings toppings={toppings} />
-              <hr/>
+            <div key={i}>
+              <PizzaSize item={item} />
+              <Toppings
+                toppings={toppings}
+                pizzaName={item.name}
+              />
+              <hr />
             </div>
           );
         })}
@@ -37,10 +43,13 @@ const mapStateToProps = state => ({
   toppings: selectToppings(state)
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchPizzaSizes: bindActionCreators(fetchPizzaSizes, dispatch),
-    shouldFetchPizzaToppings: bindActionCreators(shouldFetchPizzaToppings, dispatch)
+    shouldFetchPizzaToppings: bindActionCreators(
+      shouldFetchPizzaToppings,
+      dispatch
+    )
   };
 };
 
