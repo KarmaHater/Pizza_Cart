@@ -1,15 +1,12 @@
-import {
-  CART_ITEM_ADD,
-  CART_ITEM_REMOVE,
-} from "../constants/constants.js";
+import { CART_ITEM_ADD, CART_ITEM_REMOVE } from "../constants/constants.js";
+import { selectCurrentSize, selectCurrentToppings } from "./../selectors";
 
-export const addCartItem = (item) => dispatch => {
-  console.log(item, "item")
-  debugger;
+export const addCartItem = item => (dispatch, getState) => {
   dispatch({
-    type: CART_SUMMARY_ADD,
+    type: CART_ITEM_ADD,
     payload: {
-      item
+      pizzaSize: selectCurrentSize(getState(), item.pizzaName),
+      currentToppings: selectCurrentToppings(getState(), item.currentToppings)
     }
   });
 };

@@ -9,12 +9,12 @@ import CartItem from "./CartItem";
 class CartSummaryContainer extends Component {
   render() {
     const { items } = this.props;
-
+    
     return (
       <div>
         <h1>Cart:</h1>
         <div>
-          {items.map((topping, i) => <CartItem key={i} item={item} />)}
+          {items.map((item, i) => <CartItem key={i} item={item} />)}
         </div>
         <div>{calculateTotal(items)}</div>
       </div>

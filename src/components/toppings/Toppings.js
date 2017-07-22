@@ -20,7 +20,7 @@ class Toppings extends Component {
   handleClick = () => {
     this.props.addCartItem({
       pizzaName: this.props.pizzaName,
-      pizzaToppings: this.selectedCheckboxes
+      currentToppings: this.selectedCheckboxes
     });
   };
 
