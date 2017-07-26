@@ -1,11 +1,12 @@
 export const calculateTotal = items => {
   if (items && !items.isEmpty()) {
-    const total = items.reduce((total, item) => {
-      const basePrice = item.pizzaSize.basePrice;
-      const toppings = calculateToppings(item.currentToppings);
-      return basePrice + toppings;
-    }, 0);
-    return total.toFixed(2);
+    return items
+      .reduce((total, item, i) => {
+        const basePrice = item.pizzaSize.basePrice;
+        const toppings = calculateToppings(item.currentToppings);
+        return basePrice + toppings + total;
+      }, 0)
+      .toFixed(2);
   }
 
   return 0;

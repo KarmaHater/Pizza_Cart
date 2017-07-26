@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectCartSummaryItems } from './../../redux/selectors';
 import CartItem from './CartItem';
+import Total from './../total/Total';
 
 class CartSummaryContainer extends Component {
     render() {
@@ -13,6 +14,7 @@ class CartSummaryContainer extends Component {
         <div>
           {items.map((item, i) => <CartItem key={i} item={item} />)}
         </div>
+        <Total items={items} />
       </div>
         );
     }
