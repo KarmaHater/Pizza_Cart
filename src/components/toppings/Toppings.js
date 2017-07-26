@@ -18,13 +18,10 @@ class Toppings extends Component {
   }
 
   toggleCheckbox = name => {
-
     if (this.state.checked.has(name)) {
-
       this.state.checked.delete(name);
       this.setState({ checked: this.state.checked });
       this.toggleWarning(false);
-
     } else {
       const currentAmountOfToppings = this.state.checked.size;
       if (currentAmountOfToppings <= this.props.maxToppings) {
@@ -33,7 +30,6 @@ class Toppings extends Component {
         this.toggleWarning(true);
       }
     }
-
   };
 
   handleAddClick = () => {
@@ -70,10 +66,8 @@ class Toppings extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addCartItem: bindActionCreators(addCartItem, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  addCartItem: bindActionCreators(addCartItem, dispatch)
+});
 
 export default connect(null, mapDispatchToProps)(Toppings);

@@ -44,15 +44,13 @@ const mapStateToProps = state => ({
   toppings: selectToppings(state)
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchPizzaSizes: bindActionCreators(fetchPizzaSizes, dispatch),
-    shouldFetchPizzaToppings: bindActionCreators(
-      shouldFetchPizzaToppings,
-      dispatch
-    )
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchPizzaSizes: bindActionCreators(fetchPizzaSizes, dispatch),
+  shouldFetchPizzaToppings: bindActionCreators(
+    shouldFetchPizzaToppings,
+    dispatch
+  )
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   PizzaSizesContainer
