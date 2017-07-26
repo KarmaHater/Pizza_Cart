@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectCartSummaryItems } from './../../redux/selectors';
-import { calculateTotal } from './utils';
 import CartItem from './CartItem';
 
 class CartSummaryContainer extends Component {
@@ -14,7 +13,6 @@ class CartSummaryContainer extends Component {
         <div>
           {items.map((item, i) => <CartItem key={i} item={item} />)}
         </div>
-        <div>{calculateTotal(items)}</div>
       </div>
         );
     }
