@@ -13,7 +13,7 @@ const CartItem = ({ item, removeCartItem }) => {
       <ul>
         {" "}
         {item.currentToppings.map((topping, i) => (
-          <li key={i}>{topping.name}</li>
+          <li key={i}>{topping.topping.name}</li>
         ))}
       </ul>
 

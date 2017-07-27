@@ -14,5 +14,5 @@ export const calculateTotal = items => {
 
 const calculateToppings = toppings =>
   toppings.reduce((total, topping) => {
-    return total + topping.price;
+    return total + topping.topping.price;
   }, 0);

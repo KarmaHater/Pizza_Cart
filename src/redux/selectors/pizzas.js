@@ -6,7 +6,9 @@ export const selectCurrentSize = (state, size) =>
 export const selectToppings = (state, pizzaName) => {
     console.log(state.pizzas.toJS());
     return state.pizzas.getIn(['toppings', pizzaName]) || [];
-}
+};
 
-export const selectCurrentToppings = (state, currentToppings) =>
-    selectToppings(state).filter(topping => currentToppings.has(topping.name));
+export const selectCurrentToppings = (state, currentToppings, pizzaName) =>
+    selectToppings(state, pizzaName).filter(item =>
+        currentToppings.has(item.topping.name)
+    );

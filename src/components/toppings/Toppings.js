@@ -54,22 +54,43 @@ class Toppings extends Component {
 
         return (
             <div>
-                <h3>topping</h3>
+                <h4>Toppings:</h4>
                 <ul>
-                    {toppings.map((item, i) =>
-                        <li key={i}>
-                            <input
-                                type="checkbox"
-                                checked={
-                                    this.state.checked.has(item.topping.name) ||
-                                    false
-                                }
-                                onClick={() =>
-                                    this.toggleCheckbox(item.topping.name)}
-                            />
-                            <Topping topping={item.topping} />
-                        </li>
-                    )}
+                    {toppings.map((item, i) => {
+                        return !item.defaultSelected
+                            ? <li key={i}>
+                                  <input
+                                      type="checkbox"
+                                      checked={
+                                          this.state.checked.has(
+                                              item.topping.name
+                                          ) || false
+                                      }
+                                      onClick={() =>
+                                          this.toggleCheckbox(
+                                              item.topping.name
+                                          )}
+                                  />
+                                  <Topping
+                                      topping={item.topping}
+                                      isDefault={item.defaultSelected}
+                                  />
+                              </li>
+                            : null;
+                    })}
+                </ul>
+                <h4> Default Toppings:</h4>
+                <ul>
+                    {toppings.map((item, i) => {
+                        return item.defaultSelected
+                            ? <li key={i}>
+                                  <Topping
+                                      topping={item.topping}
+                                      isDefault={item.defaultSelected}
+                                  />
+                              </li>
+                            : null;
+                    })}
                 </ul>
                 <button onClick={this.handleAddClick}>Add me</button>
                 {this.state.displayWarning ? <h4>{WARNING}</h4> : null}
