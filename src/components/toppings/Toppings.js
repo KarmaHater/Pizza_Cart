@@ -34,7 +34,10 @@ class Toppings extends Component {
             this.toggleWarning(false);
         } else {
             const currentAmountOfToppings = this.state.checked.size;
-            if (currentAmountOfToppings <= this.props.maxToppings) {
+            if (
+                currentAmountOfToppings <= this.props.maxToppings ||
+                this.props.maxToppings === null
+            ) {
                 this.setState({ checked: this.state.checked.add(name) });
             } else {
                 this.toggleWarning(true);
