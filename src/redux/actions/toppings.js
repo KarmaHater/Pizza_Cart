@@ -1,52 +1,33 @@
 import { PIZZA_TOPPINGS_FETCH } from '../constants/constants.js';
 import { selectToppings } from './../../redux/selectors';
+const fetch = require('graphql-fetch')(
+    'https://core-graphql.dev.waldo.photos/pizza'
+);
 
-//get this data
-// Available toppings per pizza size, and whether they are selected by default for that size.
+const getQuery = name => `{
+         pizzaSizeByName(name: ${name.toUpperCase()}) {
+           toppings {
+             topping {
+               name
+               price
+             }
+             defaultSelected
+           }
+         }
+    }`;
 
-// const fetch = require("graphql-fetch")(
-//   "https://core-graphql.dev.waldo.photos/pizza"
-// );
-//
-// const query = `{
-//     pizzaSizes {
-//       name
-//       maxToppings
-//       basePrice
-//     }
-// }`;
-
-const mockedToppings = [
-  { name: 'cheese', price: 1.20 },
-  { name: 'ham', price: 1.20 },
-  { name: 'tomate', price: 1.20 },
-  { name: 'olives', price: 1.20 },
-  { name: 'onions', price: 1.20 },
-  { name: 'blue cheese', price: 1.20 },
-  { name: 'goat cheese', price: 1.20 }
-];
-
-const fetchPizzaToppings = () => dispatch => {
-  // fetch(query).then(results => {
-  //   if (results.errors) {
-  //     console.log(results.errors);
-  //   }
-
-    dispatch({
-        type: PIZZA_TOPPINGS_FETCH,
-        payload: {
-            toppings: mockedToppings
+export const fetchPizzaToppings = name => dispatch => {
+    fetch(getQuery(name)).then(results => {
+        if (results.errors) {
+            console.log(results.errors);
         }
+
+        dispatch({
+            type: PIZZA_TOPPINGS_FETCH,
+            payload: {
+                pizzaName: name,
+                toppings: results.data.pizzaSizeByName.toppings
+            }
+        });
     });
-  // });
-};
-
-export const shouldFetchPizzaToppings = () => (dispatch, getState) => {
-    const cachedToppings = selectToppings(getState());
-
-    if (cachedToppings.isEmpty()) {
-        dispatch(fetchPizzaToppings());
-    }
-
-    return;
 };

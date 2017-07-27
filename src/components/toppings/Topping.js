@@ -1,9 +1,5 @@
 import React from 'react';
 
-const Topping = ({ topping }) => {
-    return (
-      <span>{topping.name} : {topping.price}</span>
-    );
-};
+const Topping = ({ topping }) => <span>{topping.name} : {topping.price}</span>;
 
 export default Topping;

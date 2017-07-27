@@ -1,12 +1,12 @@
 import {
-  PIZZA_SIZES_FETCH,
-  PIZZA_TOPPINGS_FETCH
+    PIZZA_SIZES_FETCH,
+    PIZZA_TOPPINGS_FETCH
 } from '../constants/constants.js';
-import { Map, List } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
 
-const initialState = new Map({
-    pizzaSizes: new List(),
-    toppings: new List()
+const initialState = fromJS({
+    pizzaSizes: [],
+    toppings: {}
 });
 
 export default (state = initialState, action) => {
@@ -14,7 +14,14 @@ export default (state = initialState, action) => {
     case PIZZA_SIZES_FETCH:
         return state.set('pizzaSizes', new List(action.payload.pizzaSizes));
     case PIZZA_TOPPINGS_FETCH:
-        return state.set('toppings', new List(action.payload.toppings));
+        const toppings = state
+                .get('toppings')
+                .set(
+                    action.payload.pizzaName,
+                    new List(action.payload.toppings)
+                );
+
+        return state.set('toppings', toppings);
     default:
         return state;
     }
