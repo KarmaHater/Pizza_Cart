@@ -4,7 +4,7 @@ import { selectCartSummaryItems } from './../../redux/selectors';
 import CartItem from './CartItem';
 import Total from './../total/Total';
 
-class CartSummaryContainer extends Component {
+class CartSummary extends Component {
     render() {
         const { items, defaultItems } = this.props;
 
@@ -25,4 +25,4 @@ const mapStateToProps = state => ({
     items: selectCartSummaryItems(state)
 });
 
-export default connect(mapStateToProps)(CartSummaryContainer);
+export default connect(mapStateToProps)(CartSummary);

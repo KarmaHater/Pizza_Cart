@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PizzasContainer from './../components/pizzas/PizzasContainer';
-import CartSummaryContainer from './../components/cartSummary/CartSummaryContainer';
+import CartSummary from './../components/cartSummary/CartSummary';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <CartSummaryContainer />
+        <CartSummary />
         <PizzasContainer />
       </div>
     );

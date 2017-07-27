@@ -53,7 +53,6 @@ class Toppings extends Component {
 
     render() {
         const { selectableToppings, defaultTopping } = this.props;
-        console.log(this.state.check, 'check');
 
         return (
             <div>
