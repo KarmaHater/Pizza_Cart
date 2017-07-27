@@ -5,7 +5,10 @@ import { addCartItem } from './../../redux/actions';
 import { WARNING } from './utils/warning';
 import Topping from './Topping';
 
-import { selectPizzaSizes, selectToppings } from './../../redux/selectors';
+import {
+    selectDefaultToppings,
+    selectSelectableToppings
+} from './../../redux/selectors';
 import { fetchPizzaToppings } from './../../redux/actions';
 
 class Toppings extends Component {
@@ -49,48 +52,41 @@ class Toppings extends Component {
     };
 
     render() {
-        const { toppings } = this.props;
+        const { selectableToppings, defaultTopping } = this.props;
         console.log(this.state.check, 'check');
 
         return (
             <div>
                 <h4>Toppings:</h4>
                 <ul>
-                    {toppings.map((item, i) => {
-                        return !item.defaultSelected
-                            ? <li key={i}>
-                                  <input
-                                      type="checkbox"
-                                      checked={
-                                          this.state.checked.has(
-                                              item.topping.name
-                                          ) || false
-                                      }
-                                      onClick={() =>
-                                          this.toggleCheckbox(
-                                              item.topping.name
-                                          )}
-                                  />
-                                  <Topping
-                                      topping={item.topping}
-                                      isDefault={item.defaultSelected}
-                                  />
-                              </li>
-                            : null;
-                    })}
+                    {selectableToppings.map((item, i) =>
+                        <li key={i}>
+                            <input
+                                type="checkbox"
+                                checked={
+                                    this.state.checked.has(item.topping.name) ||
+                                    false
+                                }
+                                onClick={() =>
+                                    this.toggleCheckbox(item.topping.name)}
+                            />
+                            <Topping
+                                topping={item.topping}
+                                isDefault={item.defaultSelected}
+                            />
+                        </li>
+                    )}
                 </ul>
                 <h4> Default Toppings:</h4>
                 <ul>
-                    {toppings.map((item, i) => {
-                        return item.defaultSelected
-                            ? <li key={i}>
-                                  <Topping
-                                      topping={item.topping}
-                                      isDefault={item.defaultSelected}
-                                  />
-                              </li>
-                            : null;
-                    })}
+                    {defaultTopping.map((item, i) =>
+                        <li key={i}>
+                            <Topping
+                                topping={item.topping}
+                                isDefault={item.defaultSelected}
+                            />
+                        </li>
+                    )}
                 </ul>
                 <button onClick={this.handleAddClick}>Add me</button>
                 {this.state.displayWarning ? <h4>{WARNING}</h4> : null}
@@ -101,7 +97,8 @@ class Toppings extends Component {
 }
 
 const mapStateToProps = (state, { pizzaName }) => ({
-    toppings: selectToppings(state, pizzaName)
+    defaultTopping: selectDefaultToppings(state, pizzaName),
+    selectableToppings: selectSelectableToppings(state, pizzaName)
 });
 
 const mapDispatchToProps = dispatch => ({

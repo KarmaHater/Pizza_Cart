@@ -6,16 +6,17 @@ import Total from './../total/Total';
 
 class CartSummaryContainer extends Component {
     render() {
-        const { items } = this.props;
+        const { items, defaultItems } = this.props;
 
         return (
-      <div>
-        <h1>Cart:</h1>
-        <div>
-          {items.map((item, i) => <CartItem key={i} item={item} />)}
-        </div>
-        <Total items={items} />
-      </div>
+            <div>
+                <h1>Cart:</h1>
+                <div>
+                    <h3>Topping</h3>
+                    {items.map((item, i) => <CartItem key={i} item={item} />)}
+                </div>
+                <Total items={items} />
+            </div>
         );
     }
 }
@@ -24,6 +25,4 @@ const mapStateToProps = state => ({
     items: selectCartSummaryItems(state)
 });
 
-export default connect(mapStateToProps)(
-  CartSummaryContainer
-);
+export default connect(mapStateToProps)(CartSummaryContainer);

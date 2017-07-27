@@ -1,5 +1,4 @@
 import { PIZZA_TOPPINGS_FETCH } from '../constants/constants.js';
-import { selectToppings } from './../../redux/selectors';
 const fetch = require('graphql-fetch')(
     'https://core-graphql.dev.waldo.photos/pizza'
 );
